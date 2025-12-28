@@ -3,12 +3,9 @@
 import { useState } from "react"
 import HeroSection from "@/components/hero-section"
 import ChristmasBallsSection from "@/components/christmas-balls-section"
-import LearningSection from "@/components/learning-section"
-import ProgramSection from "@/components/program-section"
 import PricingSection from "@/components/pricing-section"
 import RegisterModal from "@/components/register-modal"
 import SnowAnimation from "@/components/snow-animation"
-import Footer from "@/components/footer"
 import BackgroundMusic from "@/components/backgroundmusic"
 
 export default function Home() {

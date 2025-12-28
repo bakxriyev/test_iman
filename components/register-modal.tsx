@@ -92,7 +92,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
             {/* Logo */}
             <div className="text-center mb-6">
               <h2 className="text-5xl text-[#c5dff0]" style={{ fontFamily: "'Allura', cursive" }}>
-                maqsadiya
+                 Mo'jizaviy hayotga <br /> 4 ta yo'l
               </h2>
             </div>
 

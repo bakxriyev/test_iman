@@ -6,7 +6,7 @@ export default function BackgroundMusic() {
   useEffect(() => {
     const audio = new Audio("/background.m4a")
     audio.loop = true
-    audio.volume = 1 // past ovoz o‘rniga eshitiladigan qilib
+    audio.volume = 0.006
     audio.preload = "auto"
 
     const startMusic = () => {
