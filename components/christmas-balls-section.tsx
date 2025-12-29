@@ -6,23 +6,19 @@ const BenefitsSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
   const benefits = [
     {
       icon: "/images/11.webp",
-      text1: "Orzu maqsad yozib, ro’yobidan qiynalayotganlar ",
-      text2: "oshiruvchi niyatni to'g'ri qilishni",
+      text1: "Orzu maqsad yozib, ro’yobidan qiynalayotganlar",
     },
     {
       icon: "/images/6.webp",
       text1: "Yangi hayot boshlashni istovchilar",
-      text2: "o'lchovli qo'yishni",
     },
     {
       icon: "/images/5.webp",
       text1: "Energiyasizlik, dangasalikdan qiynalayotganlar",
-      text2: "to'siqlarni yengishni",
     },
     {
       icon: "/images/4.webp",
       text1: "Moliyaviy erkinlikka chiqish, munosabatlarni to’g’irlash va rivojlanishni xoxlayotganlar",
-      text2: "ketligida ishlashni bilib olasiz",
     },
     {
       icon: "/images/2.webp",
@@ -35,7 +31,7 @@ const BenefitsSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
   ]
 
   return (
-    <section className="relative min-h-screen py-16 px-4 overflow-hidden flex flex-col">
+    <section className="relative min-h-screen py-16  px-4 overflow-hidden flex flex-col">
       {/* Unified Winter Background */}
       <div className="absolute inset-0">
         <Image src="/images/bg3.webp" alt="background" fill className="object-cover" priority />
@@ -62,9 +58,6 @@ const BenefitsSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
               </div>
               <div className="text-left">
                 <p className="text-lg md:text-xl text-[#2c4a5e] font-semibold">{item.text1}</p>
-                {item.text2 && (
-                  <p className="text-lg md:text-xl text-[#2c4a5e] font-semibold">{item.text2}</p>
-                )}
               </div>
             </div>
           ))}
@@ -95,7 +88,7 @@ const BenefitsSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
       {/* BUTTON - Fixed pastda (scroll qilganda ham ko'rinib turadi) */}
       <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-xs z-50 px-4">
         {/* Icicle border */}
-        <div className="absolute -top-16 left-0 right-0 pointer-events-none z-50">
+        <div className="absolute -top-20 left-0 right-0 pointer-events-none z-50">
           <Image
             src="/images/8.webp"
             alt="dripping icicle border"
@@ -109,7 +102,7 @@ const BenefitsSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
         {/* Button */}
         <button
           onClick={onOpenForm}
-          className=" w-full py-5 rounded-full font-bold text-[#3a6a8a] shadow-2xl"
+          className=" w-full py-5 rounded-full animate-drip font-bold text-[#3a6a8a] shadow-2xl"
           style={{
             background: "linear-gradient(180deg, #ffffff 0%, #e8f4fc 50%, #b8dae8 100%)",
             boxShadow: "0 10px 0 #9fc5dc, 0 16px 30px rgba(150,200,230,0.6)",
