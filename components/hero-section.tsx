@@ -21,9 +21,8 @@ const HeroSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
         {/* ================= MOBILE ================= */}
         <div className="lg:hidden flex flex-col px-1 pt-5">
           {/* TOP */}
-          <p className="text-center text-[#6b8fa6] tracking-[0.35em] text-[12px] uppercase">
-            Manga 1 kun vaqt bering 
-Hayotingizni o’zgartiradigan, mo’jizaviy 4 ta yo’l ko’rsataman!
+          <p className="text-center font-semibold text-[#6b8fa6] tracking-[0.1.5em] text-[16px] uppercase">
+            1 kunda hayotingizni o’zgartiraman
           </p>
 
           {/* TITLE */}
@@ -39,7 +38,7 @@ Hayotingizni o’zgartiradigan, mo’jizaviy 4 ta yo’l ko’rsataman!
           </h1>
 
           {/* DESCRIPTION - Endi Questrial shrift bilan (layoutdan keladi) */}
-          <div className="text-center mt-4 text-[19px] leading-relaxed px-2 questrial">
+          <div className="text-center mt-4 text-[20px] leading-relaxed px-2 questrial">
             <span className="font-bold text-[#2c4a5e]">2026 yilni ham</span>{" "}
             <span className="text-[#4D4D4D]">
               2025 yildek o'tkazishni hohlamaganlar va yangi yilda o'zini oson
