@@ -1,187 +1,202 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { X } from "lucide-react"
+import { useState, useEffect } from "react";
+import { X } from "lucide-react";
 
-const RegisterModal = ({ isOpen, onClose }) => {
+interface RegisterModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-  })
-  const [isLoading, setIsLoading] = useState(false)
-  const [message, setMessage] = useState({ type: "", text: "" })
+    full_name: "",
+    phone_number: "",
+    address: "",
+    type: ""
+  });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setIsLoading(true)
-    setMessage({ type: "", text: "" })
+  const [isLoading, setIsLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-    try {
-      const response = await fetch("https://backend.imanakhmedovna.uz/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          phone: formData.phone,
-        }),
-      })
-
-      if (response.ok) {
-        setMessage({ type: "success", text: "Muvaffaqiyatli ro'yxatdan o'tdingiz!" })
-        setFormData({ name: "", phone: "" })
-        setTimeout(() => {
-          onClose()
-          setMessage({ type: "", text: "" })
-        }, 2000)
-      } else {
-        throw new Error("Registration failed")
-      }
-    } catch (error) {
-      setMessage({ type: "error", text: "Xatolik yuz berdi. Qaytadan urinib ko'ring." })
-    } finally {
-      setIsLoading(false)
+  useEffect(() => {
+    if (isOpen) {
+      setShowModal(true);
     }
-  }
+  }, [isOpen]);
 
-  if (!isOpen) return null
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const fullPhone = `+998${formData.phone_number.replace(/\D/g, "")}`;
+
+    // keepalive: true - sahifa yopilganda ham so'rov davom etadi
+    fetch("https://backend.imanakhmedovna.uz/userss", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        full_name: formData.full_name.trim(),
+        phone_number: fullPhone,
+        address: "",
+        type: "",
+      }),
+      keepalive: true, // Bu muhim!
+    });
+
+    // So'rov jo'natildi, endi redirect
+    setTimeout(() => {
+      window.location.href = "https://t.me/+Qsmx3X4QHyFmMTVi";
+    }, 100); // 100ms kutish - so'rov ishga tushishi uchun yetarli
+  };
+
+  const handleClose = () => {
+    setShowModal(false);
+    setTimeout(onClose, 300);
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, "").slice(0, 9);
+    setFormData({ ...formData, phone_number: value });
+  };
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center">
-      {/* Backdrop with ice effect */}
-      <div className="absolute inset-0 bg-[#d4ebf7]/95 backdrop-blur-md" onClick={onClose} />
-
-      {/* Modal Container - Full screen on mobile */}
+      {/* Backdrop */}
       <div
-        className="relative w-full h-full md:h-auto md:w-auto md:max-w-md 
-                      flex flex-col items-center justify-center p-4 md:p-0"
+        className="absolute inset-0 bg-[#d4ebf7]/95 backdrop-blur-lg"
+        onClick={handleClose}
+      />
+
+      {/* Modal Container */}
+      <div
+        className={`relative w-full h-full md:h-auto md:w-auto md:max-w-md 
+                    flex flex-col items-center justify-center p-4 md:p-0
+                    transition-all duration-500 ease-in-out
+                    ${showModal ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
       >
         {/* Modal Content */}
         <div
-          className="relative w-full max-w-md bg-white rounded-3xl 
-                        shadow-[0_20px_60px_rgba(142,195,224,0.5)] 
-                        border-4 border-[#e8f4fc]
-                        overflow-hidden
-                        max-h-[90vh] md:max-h-none overflow-y-auto"
+          className="relative w-full max-w-md bg-gradient-to-b from-[#f8fcff] to-[#e8f4fc]
+                      rounded-3xl shadow-[0_30px_80px_rgba(142,195,224,0.4)]
+                      border-4 border-[#c5dff0]/80
+                      overflow-hidden
+                      max-h-[90vh] md:max-h-none overflow-y-auto"
         >
           {/* Ice decoration top */}
-          <div className="absolute top-0 left-0 right-0 h-3 bg-gradient-to-b from-[#e8f4fc] to-transparent"></div>
+          <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-[#e8f4fc] via-[#d4ebf7] to-transparent opacity-90" />
           <div className="absolute top-0 left-0 right-0 flex justify-center">
-            <div className="w-16 h-2 bg-[#c5dff0] rounded-b-full"></div>
+            <div className="w-24 h-4 bg-[#c5dff0]/70 rounded-b-full blur-sm" />
           </div>
 
-          {/* Close Button - Ice themed */}
+          {/* Close Button */}
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className="absolute top-4 right-4 z-20 w-12 h-12 rounded-full
-                       bg-gradient-to-b from-[#f0f8ff] via-[#e0f0f8] to-[#c5dff0]
-                       border-t-2 border-l-2 border-white/80
-                       border-b-3 border-r-3 border-[#9ecce6]
-                       shadow-[0_4px_12px_rgba(142,195,224,0.4),inset_0_2px_4px_rgba(255,255,255,0.9)]
+                       bg-gradient-to-br from-[#f0f8ff] to-[#d4ebf7]
+                       border-t-2 border-l-2 border-white/90
+                       border-b-4 border-r-4 border-[#a0d8ef]/80
+                       shadow-[0_6px_16px_rgba(142,195,224,0.3),inset_0_3px_6px_rgba(255,255,255,0.8)]
                        flex items-center justify-center
-                       hover:shadow-[0_2px_8px_rgba(142,195,224,0.4)]
-                       hover:translate-y-0.5
-                       active:translate-y-1
-                       transition-all duration-150"
+                       hover:scale-105 hover:rotate-3
+                       active:scale-95
+                       transition-all duration-200"
           >
             <X className="w-6 h-6 text-[#5ba3c8]" strokeWidth={3} />
           </button>
 
           <div className="p-8 pt-12">
-            {/* Logo */}
+            {/* Title */}
             <div className="text-center mb-6">
-              <h2 className="text-5xl text-[#c5dff0]" style={{ fontFamily: "'Allura', cursive" }}>
-                 Mo'jizaviy hayotga <br /> 4 ta yo'l
+              <h2 className="text-3xl text-[#a0d8ef] italic font-bold">
+                1 kunda hayotingizni <br /> o'zgartiraman
               </h2>
             </div>
 
-            {/* Title */}
-            <p className="text-center text-[#2c5f7c] text-lg font-medium mb-8">
-              Keyingi qadamga o'tish uchun ismingizni va raqamingizni qoldiring!
+            <p className="text-center text-[#2c5f7c] text-lg mb-8 leading-relaxed">
+              Bepul darsga qatnashish uchun pastdagi ma'lumotlarni to'ldiring!
             </p>
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label className="block text-[#5ba3c8] text-sm font-bold mb-2 uppercase tracking-wide">Ismingiz</label>
+              {/* Ism */}
+              <div className="group">
+                <label className="block text-[#5ba3c8] text-sm font-bold mb-2 uppercase tracking-wide">
+                  Ismingiz
+                </label>
                 <input
                   type="text"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  value={formData.full_name}
+                  onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
                   placeholder="Ismingizni kiriting"
                   required
-                  className="w-full px-5 py-4 rounded-2xl
-                             bg-[#f8fcff] border-2 border-[#e0eff8]
+                  className="w-full px-5 py-4 rounded-2xl bg-[#f8fcff] border-2 border-[#d4ebf7]
                              text-[#2c5f7c] placeholder-[#a8c5d8]
-                             focus:border-[#5ba3c8] focus:ring-4 focus:ring-[#5ba3c8]/10
-                             focus:bg-white
-                             outline-none transition-all duration-300
-                             text-lg"
+                             focus:border-[#5ba3c8] focus:ring-4 focus:ring-[#5ba3c8]/20
+                             focus:bg-white focus:scale-[1.02]
+                             outline-none transition-all duration-300 text-lg shadow-inner"
                 />
               </div>
 
-              <div>
+              {/* Telefon */}
+              <div className="group">
                 <label className="block text-[#5ba3c8] text-sm font-bold mb-2 uppercase tracking-wide">
                   Telefon raqamingiz
                 </label>
-                <input
-                  type="tel"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  placeholder="+998 XX XXX XX XX"
-                  required
-                  className="w-full px-5 py-4 rounded-2xl
-                             bg-[#f8fcff] border-2 border-[#e0eff8]
-                             text-[#2c5f7c] placeholder-[#a8c5d8]
-                             focus:border-[#5ba3c8] focus:ring-4 focus:ring-[#5ba3c8]/10
-                             focus:bg-white
-                             outline-none transition-all duration-300
-                             text-lg"
-                />
+                <div className="relative">
+                  <span className="absolute left-5 top-1/2 -translate-y-1/2 text-[#5ba3c8] font-bold text-lg z-10">
+                    +998
+                  </span>
+                  <input
+                    type="tel"
+                    value={formData.phone_number}
+                    onChange={handlePhoneChange}
+                    placeholder="XX XXX XX XX"
+                    required
+                    maxLength={9}
+                    pattern="[0-9]{9}"
+                    className="w-full pl-20 pr-5 py-4 rounded-2xl bg-[#f8fcff] border-2 border-[#d4ebf7]
+                               text-[#2c5f7c] placeholder-[#a8c5d8]
+                               focus:border-[#5ba3c8] focus:ring-4 focus:ring-[#5ba3c8]/20
+                               focus:bg-white focus:scale-[1.02]
+                               outline-none transition-all duration-300 text-lg shadow-inner"
+                  />
+                </div>
               </div>
 
-              {message.text && (
-                <div
-                  className={`p-4 rounded-2xl text-center font-medium ${
-                    message.type === "success"
-                      ? "bg-green-50 text-green-600 border-2 border-green-200"
-                      : "bg-red-50 text-red-600 border-2 border-red-200"
-                  }`}
-                >
-                  {message.text}
-                </div>
-              )}
-
-              {/* Submit Button - 3D Ice Effect */}
+              {/* Submit Button */}
               <button
                 type="submit"
-                disabled={isLoading}
+                disabled={isLoading || formData.phone_number.length !== 9}
                 className="w-full py-5 rounded-full text-[#2c5f7c] font-bold text-lg
-                           bg-gradient-to-b from-[#f0f8ff] via-[#e0f0f8] to-[#c5dff0]
-                           border-t-2 border-l-2 border-white/80
-                           border-b-4 border-r-4 border-[#9ecce6]
-                           shadow-[0_8px_24px_rgba(142,195,224,0.5),inset_0_2px_6px_rgba(255,255,255,0.9)]
-                           hover:shadow-[0_4px_16px_rgba(142,195,224,0.5),inset_0_2px_6px_rgba(255,255,255,0.9)]
-                           hover:translate-y-1
-                           active:translate-y-2 active:shadow-[0_2px_8px_rgba(142,195,224,0.4)]
-                           transition-all duration-150 ease-out
-                           disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none"
+                           bg-gradient-to-br from-[#f0f8ff] to-[#d4ebf7]
+                           border-t-2 border-l-2 border-white/90
+                           border-b-4 border-r-4 border-[#a0d8ef]/80
+                           shadow-[0_8px_24px_rgba(142,195,224,0.4),inset_0_3px_6px_rgba(255,255,255,0.8)]
+                           hover:scale-105 hover:shadow-[0_12px_32px_rgba(142,195,224,0.6)]
+                           active:scale-100
+                           transition-all duration-200
+                           disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {isLoading ? "Yuborilmoqda..." : "Keyingi qadamga o'tish"}
               </button>
             </form>
 
-            {/* Footer Text */}
-            <p className="text-center text-[#7a9bb5] text-sm mt-8 italic">Orzular kutib turmaydi. Yangi yil ham.</p>
+            <p className="text-center text-[#7a9bb5] text-sm mt-8 italic">
+              by Iman Akhmedovna
+            </p>
           </div>
 
           {/* Ice decoration bottom */}
-          <div className="absolute bottom-0 left-0 right-0 h-3 bg-gradient-to-t from-[#e8f4fc] to-transparent"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-[#e8f4fc] via-[#d4ebf7] to-transparent opacity-90" />
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default RegisterModal
+export default RegisterModal;

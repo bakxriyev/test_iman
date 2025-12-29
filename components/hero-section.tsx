@@ -28,28 +28,22 @@ const HeroSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
             className="text-center mt-3 text-4xl leading-tight"
             style={{
               fontFamily: "'Allura', cursive",
-              color: "#b7ddf6",
-              textShadow: "0 2px 8px rgba(120,170,210,0.35)",
+              color: "#85b9dbff",
+              textShadow: "0 2px 8px rgba(161, 174, 212, 0.35)",
             }}
           >
             Mo'jizaviy hayotga <br /> 4 ta yo'l
           </h1>
 
-          {/* DESCRIPTION (TITLE OSTIDA) */}
-          <div className="text-center mt-4 text-sm leading-relaxed px-2">
-            <p className="text-[#2e4f66]">
-              <span className="font-bold text-[#3b79a8]" style={{ fontFamily: "'Dancing Script', bold" }}>
-                2026 yilni ham
-              </span>{" "}
-              <span style={{ fontFamily: "'Dancing Script', bold" }}>
-                2025 yildek o'tkazishni hohlamaganlar va yangi yilda o'zini oson yo'l bilan o'zgartirishni
-                hohlovchilarga
-              </span>
+          {/* DESCRIPTION - Endi Questrial shrift bilan (layoutdan keladi) */}
+          <div className="text-center mt-4 text-[19px] leading-relaxed px-2 questrial">
+         
+              <span className="font-bold text-[#2c4a5e]">2026 yilni ham</span>{" "}
+              <span className="text-[#4D4D4D]">2025 yildek o'tkazishni hohlamaganlar va yangi yilda o'zini oson yo'l bilan o'zgartirishni
+              hohlovchilarga</span>
               <br />
-              <span className="font-bold text-[#2e5f85]" style={{ fontFamily: "'Dancing Script', bold" }}>
-                1 kunlik onlayn intensiv
-              </span>
-            </p>
+              <span className="font-bold text-[#2c4a5e]">1 kunlik onlayn intensiv</span>
+    
           </div>
 
           {/* IMAGE BLOCK */}
@@ -93,17 +87,47 @@ const HeroSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
               priority
             />
 
-            {/* BUTTON OVER IMAGE */}
-            <button
-              onClick={onOpenForm}
-              className="absolute bottom-[10px] left-1/2 -translate-x-1/2 w-full max-w-xs py-5 rounded-full font-bold text-[#3a6a8a] z-30"
-              style={{
-                background: "linear-gradient(180deg, #ffffff 0%, #e8f4fc 50%, #b8dae8 100%)",
-                boxShadow: "0 10px 0 #9fc5dc, 0 16px 30px rgba(150,200,230,0.6)",
-              }}
-            >
-              INTENSIVGA QO'SHILISH <ArrowLeft className="inline w-12" />
-            </button>
+            {/* BUTTON WITH ICICLE BORDER */}
+            <div className="absolute bottom-[20px] left-1/2 -translate-x-1/2 w-full max-w-xs z-50">
+              {/* Icicle border */}
+              <div className="absolute -top-16 left-0 right-0 pointer-events-none z-50">
+                <Image
+                  src="/images/8.webp"
+                  alt="icicle border"
+                  width={400}
+                  height={100}
+                  className="w-full h-auto object-contain drop-shadow-lg"
+                  priority
+                />
+              </div>
+
+              {/* Button */}
+              <div className="absolute -bottom-[10px] left-1/2 -translate-x-1/2 w-full max-w-xs z-100">
+                                       {/* Icicle border – tepada, endi 100% ko'rinadi */}
+                                       <div className="absolute -top-20 left-0 right-0 pointer-events-none z-20">
+                                         <Image
+                                           src="/images/8.webp"
+                                           alt="dripping icicle border"
+                                           width={400}
+                                           height={120}
+                                           className="w-full h-auto object-contain drop-shadow-lg"
+                                           priority
+                                         />
+                                       </div>
+                         
+                                       {/* Button */}
+                                       <button
+                                         onClick={onOpenForm}
+                                         className="relative w-full animate-drip py-5 rounded-full font-bold text-[#3a6a8a] shadow-2xl"
+                                         style={{
+                                           background: "linear-gradient(180deg, #ffffff 0%, #e8f4fc 50%, #b8dae8 100%)",
+                                           boxShadow: "0 10px 0 #9fc5dc, 0 16px 30px rgba(150,200,230,0.6)",
+                                         }}
+                                       >
+                                         INTENSIVGA QO'SHILISH <ArrowLeft className="inline w-12" />
+                                       </button>
+                                     </div>
+            </div>
           </div>
         </div>
       </div>
