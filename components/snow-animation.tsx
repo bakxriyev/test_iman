@@ -2,22 +2,35 @@
 
 import { useEffect, useRef } from "react"
 
-const SnowAnimation = () => {
-  const canvasRef = useRef(null)
+interface Snowflake {
+  x: number
+  y: number
+  radius: number
+  speed: number
+  opacity: number
+  wind: number
+}
+
+const SnowAnimation: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null)
 
   useEffect(() => {
     const canvas = canvasRef.current
-    const ctx = canvas.getContext("2d")
-    let animationFrameId
-    let snowflakes = []
+    if (!canvas) return
 
-    const resizeCanvas = () => {
+    const ctx = canvas.getContext("2d")
+    if (!ctx) return
+
+    let animationFrameId: number
+    let snowflakes: Snowflake[] = []
+
+    const resizeCanvas = (): void => {
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
     }
 
-    const createSnowflakes = () => {
-      const flakeCount = Math.floor(canvas.width / 8) // More snowflakes
+    const createSnowflakes = (): void => {
+      const flakeCount = Math.floor(canvas.width / 8)
       snowflakes = []
       for (let i = 0; i < flakeCount; i++) {
         snowflakes.push({
@@ -31,7 +44,7 @@ const SnowAnimation = () => {
       }
     }
 
-    const drawSnowflakes = () => {
+    const drawSnowflakes = (): void => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       snowflakes.forEach((flake) => {
@@ -42,7 +55,7 @@ const SnowAnimation = () => {
       })
     }
 
-    const updateSnowflakes = () => {
+    const updateSnowflakes = (): void => {
       snowflakes.forEach((flake) => {
         flake.y += flake.speed
         flake.x += flake.wind + Math.sin(flake.y * 0.01) * 0.5
@@ -59,7 +72,7 @@ const SnowAnimation = () => {
       })
     }
 
-    const animate = () => {
+    const animate = (): void => {
       drawSnowflakes()
       updateSnowflakes()
       animationFrameId = requestAnimationFrame(animate)
@@ -69,23 +82,15 @@ const SnowAnimation = () => {
     createSnowflakes()
     animate()
 
-    const handleResize = () => {
+    const handleResize = (): void => {
       resizeCanvas()
       createSnowflakes()
     }
 
     window.addEventListener("resize", handleResize)
 
-    // Update canvas height on scroll
-    const handleScroll = () => {
-      // Keep canvas at viewport height
-    }
-
-    window.addEventListener("scroll", handleScroll)
-
     return () => {
       window.removeEventListener("resize", handleResize)
-      window.removeEventListener("scroll", handleScroll)
       cancelAnimationFrame(animationFrameId)
     }
   }, [])
@@ -94,7 +99,6 @@ const SnowAnimation = () => {
     <canvas
       ref={canvasRef}
       className="fixed top-0 left-0 w-full h-full pointer-events-none z-50"
-      style={{ position: "fixed" }}
     />
   )
 }
