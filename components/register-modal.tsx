@@ -43,13 +43,11 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose }) => {
         address: "",
         type: "",
       }),
-      keepalive: true, // Bu muhim!
+      keepalive: true, // Bu muhim! Sahifa yopilsa ham so'rov yuboriladi
     });
 
-    // So'rov jo'natildi, endi redirect
-    setTimeout(() => {
-      window.location.href = "https://t.me/+Qsmx3X4QHyFmMTVi";
-    }, 100); // 100ms kutish - so'rov ishga tushishi uchun yetarli
+    // Darhol redirect - backend fonida ishlaydi
+    window.location.href = "/thank-you";
   };
 
   const handleClose = () => {

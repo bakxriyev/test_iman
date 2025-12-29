@@ -21,8 +21,9 @@ const HeroSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
         {/* ================= MOBILE ================= */}
         <div className="lg:hidden flex flex-col px-1 pt-5">
           {/* TOP */}
-          <p className="text-center text-[#6b8fa6] tracking-[0.35em] text-xs uppercase">
-            1 kunda hayotingizni o’zgartiraman
+          <p className="text-center text-[#6b8fa6] tracking-[0.35em] text-[12px] uppercase">
+            Manga 1 kun vaqt bering 
+Hayotingizni o’zgartiradigan, mo’jizaviy 4 ta yo’l ko’rsataman!
           </p>
 
           {/* TITLE */}
