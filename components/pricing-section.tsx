@@ -41,7 +41,7 @@ const PricingSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
         {/* Title */}
         <div className="text-center mb-20">
           <h3 className="text-4xl md:text-6xl font-bold text-[#1e3a5f] drop-shadow-lg" style={{ fontFamily: "'Dancing Script', cursive" }}>
-            1 kunda siz nimalarni o’rganasiz?
+            Bepul darsda nimalarni o’rganasiz
           </h3>
         </div>
 

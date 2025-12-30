@@ -27,27 +27,20 @@ const HeroSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
 
           {/* TITLE */}
           <h1
-            className="text-center mt-3 text-4xl leading-tight"
+            className="text-center font-bold mt-3 text-4xl leading-tight"
             style={{
               fontFamily: "'Allura', cursive",
               color: "#85b9dbff",
               textShadow: "0 2px 8px rgba(161, 174, 212, 0.35)",
             }}
           >
-            Mo'jizaviy hayotga <br /> 4 ta yo'l
+            Bugunoq o’zgarishga <br /> 4 ta yo’l
           </h1>
 
           {/* DESCRIPTION - Endi Questrial shrift bilan (layoutdan keladi) */}
           <div className="text-center mt-4 text-[20px] leading-relaxed px-2 questrial">
-            <span className="font-bold text-[#2c4a5e]">2026 yilni ham</span>{" "}
-            <span className="text-[#4D4D4D]">
-              2025 yildek o'tkazishni hohlamaganlar va yangi yilda o'zini oson
-              yo'l bilan o'zgartirishni hohlovchilarga
-            </span>
-            <br />
-            <span className="font-bold text-[#2c4a5e]">
-              1 kunlik onlayn intensiv
-            </span>
+            <span className="font-bold text-[#2c4a5e]">Man beradigan texnika orqali 2026 yildagi orzularingiz shunchaki daftarda qolmaydi</span>{" "}
+            
           </div>
 
           {/* IMAGE BLOCK */}
