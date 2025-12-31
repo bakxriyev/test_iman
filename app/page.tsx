@@ -18,8 +18,6 @@ export default function Home() {
     <main className="relative bg-white overflow-hidden">
       {/* Snow animation background */}
       <SnowAnimation />
-      {/* <BackgroundMusic /> */}
-
       {/* Hero Section */}
       <HeroSection onOpenForm={openForm} />
 
