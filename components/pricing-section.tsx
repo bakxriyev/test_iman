@@ -5,9 +5,9 @@ import Image from "next/image"
 
 const PricingSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
   const learningPoints = [
-    "- dangasalik orqali badavlat va suyukli ayol bo'lishni o'rganasiz",
-    "- Chilla texnikasi orqali istalgan orzuyingizga tez erishasiz",
-    "- ortiq o'zgaraman deb o'zingizga vada bermaysiz, maqsadlarga qadamba qadam yurishni bilib olasiz"]
+    "Qanday qilib badavlat va suyukli ayol boʻlishni oʻrganasiz",
+    "Istalgan orzuyingiga erishishga yordam beradigan `Chilla` texnikasini oʻrganasiz",
+    "2026-yilda dangasalikni yengib, barcha maqsadlaringizga erishish usullarini oʻrganasiz"]
 
   const [notificationVisible, setNotificationVisible] = useState(true)
 
