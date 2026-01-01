@@ -4,76 +4,76 @@ import { ArrowLeft, ArrowUp01Icon, ArrowUpIcon } from "lucide-react";
 import Image from "next/image";
 
 const HeroSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
-  const [timeLeft, setTimeLeft] = useState({ minutes: 2, seconds: 0 })
-  const [isClient, setIsClient] = useState(false)
+  const [timeLeft, setTimeLeft] = useState({ minutes: 2, seconds: 0 });
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true)
+    setIsClient(true);
 
-    const savedTime = localStorage.getItem('heroCountdownTimer')
+    const savedTime = localStorage.getItem('heroCountdownTimer');
 
     if (savedTime) {
-      const { minutes, seconds, timestamp } = JSON.parse(savedTime)
-      const now = Date.now()
-      const elapsed = Math.floor((now - timestamp) / 1000)
-      const totalSeconds = minutes * 60 + seconds - elapsed
+      const { minutes, seconds, timestamp } = JSON.parse(savedTime);
+      const now = Date.now();
+      const elapsed = Math.floor((now - timestamp) / 1000);
+      const totalSeconds = minutes * 60 + seconds - elapsed;
 
       if (totalSeconds > 0) {
         setTimeLeft({
           minutes: Math.floor(totalSeconds / 60),
           seconds: totalSeconds % 60
-        })
+        });
       } else {
-        setTimeLeft({ minutes: 2, seconds: 0 })
+        setTimeLeft({ minutes: 2, seconds: 0 });
         localStorage.setItem('heroCountdownTimer', JSON.stringify({
           minutes: 2,
           seconds: 0,
           timestamp: Date.now()
-        }))
+        }));
       }
     } else {
       localStorage.setItem('heroCountdownTimer', JSON.stringify({
         minutes: 2,
         seconds: 0,
         timestamp: Date.now()
-      }))
+      }));
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
-    if (!isClient) return
+    if (!isClient) return;
 
     const timer = setInterval(() => {
       setTimeLeft(prev => {
         if (prev.seconds > 0) {
-          const newTime = { ...prev, seconds: prev.seconds - 1 }
+          const newTime = { ...prev, seconds: prev.seconds - 1 };
           localStorage.setItem('heroCountdownTimer', JSON.stringify({
             ...newTime,
             timestamp: Date.now()
-          }))
-          return newTime
+          }));
+          return newTime;
         } else if (prev.minutes > 0) {
-          const newTime = { minutes: prev.minutes - 1, seconds: 59 }
+          const newTime = { minutes: prev.minutes - 1, seconds: 59 };
           localStorage.setItem('heroCountdownTimer', JSON.stringify({
             ...newTime,
             timestamp: Date.now()
-          }))
-          return newTime
+          }));
+          return newTime;
         } else {
-          const newTime = { minutes: 2, seconds: 0 }
+          const newTime = { minutes: 2, seconds: 0 };
           localStorage.setItem('heroCountdownTimer', JSON.stringify({
             ...newTime,
             timestamp: Date.now()
-          }))
-          return newTime
+          }));
+          return newTime;
         }
-      })
-    }, 1000)
+      });
+    }, 1000);
 
-    return () => clearInterval(timer)
-  }, [isClient])
+    return () => clearInterval(timer);
+  }, [isClient]);
 
-  const formatNumber = (num: number) => num.toString().padStart(2, '0')
+  const formatNumber = (num: number) => num.toString().padStart(2, '0');
 
   return (
     <section className="relative w-full overflow-hidden bg-gradient-to-b from-[#eef7ff] via-[#f4fbff] to-[#f8fcff]">
@@ -94,29 +94,22 @@ const HeroSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
         <div className="lg:hidden flex flex-col px-1 pt-5 pb-16">
           {/* TOP */}
           <p className="text-center font-semibold text-[#6b8fa6] tracking-[0.15em] text-[16px] uppercase">
-            1 kunda hayotingizni o'zgartiraman
+            1 kunlik online bepul darslik
           </p>
 
           {/* TITLE */}
           <h1
-            className="text-center font-bold mt-3 text-4xl leading-tight"
-            style={{
-              fontFamily: "'Allura', cursive",
-              color: "#85b9dbff",
-              textShadow: "0 2px 8px rgba(161, 174, 212, 0.35)",
-            }}
+            className="text-center text-[#7da4bb] font-bold mt-3 text-4xl leading-tight uppercase"
+            style={{ fontFamily: "var(--font-anton), Impact, sans-serif" }}
           >
             Bugun o'zgaraman
           </h1>
 
           {/* DESCRIPTION - Anton shrifti bilan */}
-          <div
-            className="text-center mt-4 text-[25px] leading-snug px-2 uppercase"
-            style={{ fontFamily: "var(--font-anton), Impact, sans-serif" }}
-          >
-            <span className="text-[#e63946]">Ortiqcha harakatlarsiz <span className="text-[#2c4a5e]">2026 - yilda </span> </span> <br />
-            <span className="text-[#2c4a5e]">yangi o'zingizni yaratish </span> <br />
-            <span className="text-[#e63946]"><span className="text-[#2c4a5e]">uchun </span>oson va yengil 4 ta yo'l</span>
+          <div className="text-center mt-4 text-[21px] leading-relaxed px-4 questrial">
+            <span className="font-bold text-[#3283a3]">Ortiqcha harakatlarsiz </span>
+            <span className="text-black">2026 - yilda yangi o'zingizni yaratish uchun </span>
+            <span className="font-bold text-[#1d7293]"><b>oson va yengil 4 ta yo'l</b></span>
           </div>
 
           {/* IMAGE BLOCK */}
@@ -161,7 +154,7 @@ const HeroSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
                 </p>
               </div>
 
-              {/* BEPUL badge + TIMER - chap tomonda */}
+              {/* BEPUL badge */}
               <div className="absolute left-[1px] top-[30%] flex flex-col gap-2">
                 {/* Sovg'a va narx */}
                 <div className="backdrop-blur-sm rounded-3xl px-2 py-2 shadow-lg border border-[#e0e0e0] flex items-center gap-2 bg-white/50">
@@ -183,15 +176,6 @@ const HeroSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
                     </span>
                   </p>
                 </div>
-
-                {/* Timer - BEPUL pastida */}
-                {isClient && (
-                  <div className="bg-white/90 backdrop-blur-sm rounded-xl px-8 py-2 shadow-lg border border-[#d4ebf7]">
-                    <span className="text-[#2c4a5e] text-xl font-bold tracking-wider">
-                      {formatNumber(timeLeft.minutes)}:{formatNumber(timeLeft.seconds)}
-                    </span>
-                  </div>
-                )}
               </div>
             </div>
 
@@ -221,6 +205,15 @@ const HeroSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
                   />
                 </div>
 
+                {/* Timer */}
+                {isClient && (
+                  <div className="absolute -top-16 right-2 bg-white/90 backdrop-blur-sm rounded-xl px-6 py-2 shadow-lg border border-[#d4ebf7] z-30">
+                    <span className="text-[#2c4a5e] text-xl font-bold tracking-wider">
+                      {formatNumber(timeLeft.minutes)}:{formatNumber(timeLeft.seconds)}
+                    </span>
+                  </div>
+                )}
+
                 {/* Button */}
                 <button
                   onClick={onOpenForm}
@@ -234,13 +227,13 @@ const HeroSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
                 >
                   INTENSIVGA QO'SHILISH <ArrowLeft className="inline w-12" />
                 </button>
-<br />
-<div className="flex items-center justify-center mt-4 gap-2">
-  <p className="text-[#2c4a5e] text-sm italic">
-    Yopiq kanalga qo'shilish uchun bosing
-  </p>
-  <ArrowUpIcon className="w-6 h-6 text-[#2c4a5e] animate-bounce" />
-</div>
+
+                <div className="flex items-center justify-center mt-4 gap-2">
+                  <p className="text-[#2c4a5e] text-sm italic">
+                    Yopiq kanalga qo'shilish uchun bosing
+                  </p>
+                  <ArrowUpIcon className="w-6 h-6 text-[#2c4a5e] animate-bounce" />
+                </div>
               </div>
             </div>
           </div>
