@@ -109,7 +109,7 @@ const HeroSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
           <div className="text-center mt-4 text-[21px] leading-relaxed px-4 questrial">
   <span className="font-bold text-[#3283a3]">Ortiqcha harakatlarsiz </span>
   <span className="text-black">2026 - yilda yangi o'zingizni yaratish uchun </span>
-  <span className="font-bold text-[#1d7293]"><b>4 ta yo'l</b></span>
+  <span className="font-bold text-[#1d7293]"><b>oson va yengil <br /> 4 ta yo’l</b></span>
 </div>
 
           {/* IMAGE BLOCK */}
