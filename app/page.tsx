@@ -17,12 +17,12 @@ export default function Home() {
   return (
     <main className="relative bg-white overflow-hidden">
       {/* Snow animation background */}
-      <SnowAnimation />
+      {/* <SnowAnimation /> */}
       {/* Hero Section */}
       <HeroSection onOpenForm={openForm} />
 
       <PricingSection onOpenForm={openForm} />
-      <ChristmasBallsSection onOpenForm={openForm}/>
+      {/* <ChristmasBallsSection onOpenForm={openForm}/> */}
       {/* Registration Modal */}
       <RegisterModal isOpen={isFormOpen} onClose={closeForm} />
     </main>

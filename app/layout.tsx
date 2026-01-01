@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { Anton, Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Questrial } from "next/font/google"
 import "./globals.css"
@@ -8,6 +8,11 @@ import "./globals.css"
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 const questrial = Questrial({ weight: "400", subsets: ["latin"], display: "swap" })
+const anton = Anton({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-anton",
+});
 
 export const metadata: Metadata = {
   title: "Mo'jizaviy hayotga 4 ta yo'l",
@@ -48,7 +53,7 @@ export default function RootLayout({
         />
       </head>
 
-      <body className={questrial.className}>
+      <body className={`${anton.variable} ${questrial.className}`}>
         <noscript>
           <img
             height="1"

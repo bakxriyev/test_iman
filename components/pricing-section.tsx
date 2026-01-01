@@ -5,12 +5,9 @@ import Image from "next/image"
 
 const PricingSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
   const learningPoints = [
-    "harkuni ertadan o’zgaraman deb vada berasizu nega o’zgarolmasligiz sabablari va unga eng oson yechim",
-    "dangasalik orqali boy hayotga erishish siri",
-    "maqsad qo’yish va unga tez yo’l orqali erishishni eng sodda siri",
-    "o’zingizga bergan vadalarni bajarolmaslik natijasidagi ichki aybdorlik, o’ziga bo’lgan ishonchni so’nishini yengish",
-    "orzu va maqsadlarga erishishni eng sodda yo’li, huzur halovatda yashash sirlarini bilib olasiz",
-  ]
+    "- dangasalik orqali badavlat va suyukli ayol bo'lishni o'rganasiz",
+    "- Chilla texnikasi orqali istalgan orzuyingizga tez erishasiz",
+    "- ortiq o'zgaraman deb o'zingizga vada bermaysiz, maqsadlarga qadamba qadam yurishni bilib olasiz"]
 
   const [notificationVisible, setNotificationVisible] = useState(true)
 
@@ -29,19 +26,19 @@ const PricingSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
   }, [])
 
   return (
-    <div className="relative w-full min-h-screen py-16 px-4 overflow-hidden flex flex-col items-center justify-center">
+    <div className="relative w-full min-h-screen py-16 px-4 overflow-hidden flex flex-col items-center justify-center bg-[#f8fcff]">
       {/* BACKGROUND */}
       <div className="absolute inset-0">
         <Image src="/images/bg3.webp" alt="background" fill className="object-cover" priority />
-        <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-white/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#f8fcff] via-transparent to-[#f8fcff]" />
       </div>
 
       {/* CONTENT */}
       <div className="relative z-10 w-full max-w-2xl mx-auto">
         {/* Title */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-16">
           <h3 className="text-4xl md:text-6xl font-bold text-[#1e3a5f] drop-shadow-lg" style={{ fontFamily: "'Dancing Script', cursive" }}>
-            Bepul darsda nimalarni o’rganasiz
+            Darsda siz:
           </h3>
         </div>
 
@@ -51,9 +48,9 @@ const PricingSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
             notificationVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20 pointer-events-none"
           }`}
         >
-          <div className="bg-white/45 backdrop-blur-md rounded-2xl shadow-2xl p-5 border border-white/50 flex items-start gap-4">
+          <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-2xl p-4 border border-[#d4ebf7] flex items-start gap-3">
             {/* Avatar */}
-            <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#a0d8ef] flex-shrink-0">
+            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#a0d8ef] flex-shrink-0">
               <Image
                 src="/images/iman.png"
                 alt="Iman Akhmedovna"
@@ -65,23 +62,23 @@ const PricingSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
 
             {/* Xabar matni */}
             <div>
-              <p className="text-[#2c4a5e] text-base font-medium">
+              <p className="text-[#2c4a5e] text-sm font-medium">
                 <span className="font-bold">Iman Akhmedovna:</span><br />
-                Men beradigan <span className="text-[#1e3a5f] font-bold">4 ta yo’l</span> orqali<br />
-                <span className="text-[#e74c3c] font-bold">1 kunda hayotingiz o’zgaradi</span>
+                Men beradigan <span className="text-[#1e3a5f] font-bold">4 ta yo'l</span> orqali<br />
+                <span className="text-[#e74c3c] font-bold">1 kunda hayotingiz o'zgaradi</span>
               </p>
             </div>
           </div>
         </div>
 
         {/* Learning points */}
-        <div className="space-y-16 mb-32">
+        <div className="space-y-10 mb-16">
           {learningPoints.map((point, index) => (
             <div
               key={index}
-              className="relative bg-white/75 backdrop-blur-lg rounded-3xl shadow-2xl px-10 py-10 border border-white/40 mx-4"
+              className="relative bg-white/80 backdrop-blur-lg rounded-3xl shadow-xl px-8 py-8 border border-[#d4ebf7] mx-2"
             >
-              <div className="absolute -top-22 left-0 right-0 pointer-events-none">
+              <div className="absolute -top-20 left-0 right-0 pointer-events-none">
                 <Image
                   src="/images/8.webp"
                   alt="icicle decoration"
@@ -92,15 +89,15 @@ const PricingSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
                 />
               </div>
 
-              <div className="flex items-start gap-6 mt-6">
+              <div className="flex items-start gap-4 mt-4">
                 <Image
                   src="/images/5.webp"
                   alt="❄️"
-                  width={40}
-                  height={40}
+                  width={32}
+                  height={32}
                   className="flex-shrink-0 mt-1"
                 />
-                <p className="text-[#2c4a5e] text-lg md:text-xl leading-relaxed font-medium italic text-start">
+                <p className="text-[#2c4a5e] text-base md:text-lg leading-relaxed font-medium italic text-start">
                   {point}
                 </p>
               </div>
@@ -109,8 +106,8 @@ const PricingSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
         </div>
 
         {/* BUTTON */}
-        <div className="relative z-50 mt-10">
-          <div className="absolute -top-14 z-20 left-1/2 -translate-x-1/2 pointer-events-none">
+        <div className="relative z-50">
+          <div className="absolute -top-26 z-20 left-1/2 -translate-x-1/2 pointer-events-none w-full max-w-sm">
             <Image
               src="/images/8.webp"
               alt="icicle border"
@@ -123,7 +120,7 @@ const PricingSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
 
           <button
             onClick={onOpenForm}
-            className="relative w-80 py-5 left-1/9 rounded-full font-bold text-[#3a6a8a] shadow-2xl"
+            className="relative w-full max-w-sm mx-auto block py-5 rounded-full font-bold text-[#3a6a8a] shadow-2xl"
             style={{
               background: "linear-gradient(180deg, #ffffff 0%, #e8f4fc 50%, #b8dae8 100%)",
               boxShadow: "0 10px 0 #9fc5dc, 0 16px 30px rgba(150,200,230,0.6)",
@@ -132,6 +129,9 @@ const PricingSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
             INTENSIVGA QO'SHILISH <ArrowLeft className="inline w-12" />
           </button>
         </div>
+
+        {/* Footer */}
+        
       </div>
     </div>
   )
