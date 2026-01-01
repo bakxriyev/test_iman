@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { ArrowLeft, ArrowUp01Icon, ArrowUpIcon } from "lucide-react";
+import { ArrowLeft, ArrowUpIcon } from "lucide-react";
 import Image from "next/image";
 
 const HeroSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
