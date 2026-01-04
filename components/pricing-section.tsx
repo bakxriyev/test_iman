@@ -44,7 +44,7 @@ const PricingSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
 
         {/* SMS Notification – scroll qilganda sekin chiqib ketadi */}
         <div
-          className={`fixed bottom-44 md:bottom-24 right-4 z-50 max-w-xs md:max-w-sm transition-all duration-700 ease-in-out ${
+          className={`fixed bottom-6 md:bottom-24 right-4 z-50 max-w-xs md:max-w-sm transition-all duration-700 ease-in-out ${
             notificationVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20 pointer-events-none"
           }`}
         >
