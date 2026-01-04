@@ -122,10 +122,10 @@ const HeroSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
 
           {/* DESCRIPTION - Anton shrifti bilan */}
           <div className="text-center mt-4 text-[21px] leading-relaxed px-4 questrial">
-            <span className="font-bold text-[#3283a3]">Qanday qilib, </span>
-            <span className="text-black">oʻziga boʻlgan ishonchsizlikdan qutulib </span>
+            <span className="font-bold text-[#3283a3]">Qanday qilib </span>
+            <span className="text-black">oʻziga boʻlgan ishonchsizlikdan qutulib, </span>
             <span className="font-bold text-[#1d7293]">
-              <b>2026-yilda barcha maqsadlaringizga erishish mumkin?</b>
+              <b>boy va suyukli ayol boʻlish mumkin?</b>
             </span>
           </div>
 
@@ -169,8 +169,7 @@ const HeroSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
               </div>
 
               {/* BEPUL badge */}
-              <div className="absolute left-[1px] top-[30%] flex flex-col gap-2">
-                {/* Sovg'a va narx */}
+              {/* <div className="absolute left-[1px] top-[30%] flex flex-col gap-2">
                 <div className="backdrop-blur-sm rounded-3xl px-2 py-2 shadow-lg border border-[#e0e0e0] flex items-center gap-2 bg-white/50">
                   <Image src="/gift.png" alt="sovg'a" width={30} height={30} className="object-contain" />
                   <p className="text-[#2c4a5e] text-[15px] leading-tight">
@@ -182,7 +181,7 @@ const HeroSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
                     <span className="text-[#e74c3c] font-bold text-[17px] questrial">BEPUL</span>
                   </p>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             {/* RIGHT IMAGE */}

@@ -44,13 +44,13 @@ const PricingSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
 
         {/* SMS Notification – scroll qilganda sekin chiqib ketadi */}
         <div
-          className={`fixed bottom-24 right-4 z-50 max-w-sm transition-all duration-700 ease-in-out ${
+          className={`fixed bottom-44 md:bottom-24 right-4 z-50 max-w-xs md:max-w-sm transition-all duration-700 ease-in-out ${
             notificationVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20 pointer-events-none"
           }`}
         >
-          <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-2xl p-4 border border-[#d4ebf7] flex items-start gap-3">
+          <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-2xl p-3 md:p-4 border border-[#d4ebf7] flex items-start gap-3">
             {/* Avatar */}
-            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#a0d8ef] flex-shrink-0">
+            <div className="w-9 h-9 md:w-10 md:h-10 rounded-full overflow-hidden border-2 border-[#a0d8ef] flex-shrink-0">
               <Image
                 src="/images/iman.png"
                 alt="Iman Akhmedovna"
@@ -61,8 +61,8 @@ const PricingSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
             </div>
 
             {/* Xabar matni */}
-            <div>
-              <p className="text-[#2c4a5e] text-sm font-medium">
+            <div> 
+              <p className="text-[#2c4a5e] text-xs md:text-sm font-medium">
                 <span className="font-bold">Iman Akhmedovna:</span><br />
                 Men beradigan <span className="text-[#1e3a5f] font-bold">4 ta yo'l</span> orqali<br />
                 <span className="text-[#e74c3c] font-bold">1 kunda hayotingiz o'zgaradi</span>
