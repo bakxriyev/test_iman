@@ -98,7 +98,7 @@ const ThankYouPage = () => {
   }, [])
 
   const handleTelegramClick = () => {
-    window.location.href = "https://t.me/+aOLMl9OL4yUxOWEy"
+    window.location.href = "https://t.me/+-EbQO1MpD15lNWRi"
   }
 
   return (
