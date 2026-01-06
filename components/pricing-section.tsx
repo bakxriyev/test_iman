@@ -5,9 +5,12 @@ import Image from "next/image"
 
 const PricingSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
   const learningPoints = [
+     "Tez ijobat bo’luvchi to’g’ri duo qilish, duo qilishni psixologik sabablari",
     "Qanday qilib badavlat va suyukli ayol boʻlishni oʻrganasiz",
     "Istalgan orzuyingiga erishishga yordam beradigan `Chilla` texnikasini oʻrganasiz",
-    "2026-yilda dangasalikni yengib, barcha maqsadlaringizga erishish usullarini oʻrganasiz"]
+    "2026-yilda dangasalikni yengib, barcha maqsadlaringizga erishish usullarini oʻrganasiz"
+   
+  ]
 
   const [notificationVisible, setNotificationVisible] = useState(true)
 
