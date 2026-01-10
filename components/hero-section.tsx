@@ -122,10 +122,10 @@ const HeroSection = ({ onOpenForm }: { onOpenForm?: () => void }) => {
 
           {/* DESCRIPTION - Anton shrifti bilan */}
           <div className="text-center mt-4 text-[21px] leading-relaxed px-4 questrial">
-            <span className="font-bold text-[#3283a3]">Qarz va kreditlardan </span>
-            <span className="text-black">oson yengil qutilib, </span>
+            <span className="font-bold text-[#3283a3]">Qanday qilib</span>
+            <span className="text-black">ortiqcha harakatlarsiz 4 ta qadam orqali</span>
             <span className="font-bold text-[#1d7293]">
-              <b>moliyaviy erkinlikka chiqish uchun 4 ta yo’l</b>
+              <b>boy bo’lish mumkin?</b>
             </span>
           </div>
 
